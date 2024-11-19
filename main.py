@@ -5,9 +5,14 @@ from nltk.corpus import stopwords
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import nltk
 
-# Load stopwords
-stop_words = set(stopwords.words('english'))
+# Download NLTK stopwords if not already available
+try:
+    stop_words = set(stopwords.words('english'))
+except LookupError:
+    nltk.download('stopwords')
+    stop_words = set(stopwords.words('english'))
 
 # Initialize tokenizer
 tokenizer = TreebankWordTokenizer()
